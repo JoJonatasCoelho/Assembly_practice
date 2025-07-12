@@ -1,3 +1,5 @@
+%include 'puts.inc'
+
 section .data
     msg db 'Hello World!'
     tam equ $- msg
@@ -8,12 +10,17 @@ section .text
 global _start
 
 _start:
-    mov EAX, 0x4
-    mov EBX, 0x1
-    mov ECX, msg
-    mov EDX, tam
-    int 0x80
+    lea ESI, [BUFFER]; load effective adress
+    add ESI, 0x9
+    mov byte[esi], LF
 
-    mov EAX, 0x1
+    dec esi
+    mov dl, 0x11
+    add dl, '0'
+    mov [esi], dl
+
+    call puts
+
+    mov EAX, SYS_EXIT
     mov EBX, 0x0
-    int 0x80
+    int SYS_CALL

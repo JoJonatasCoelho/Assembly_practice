@@ -1,4 +1,4 @@
-PROGRAM = input
+PROGRAM = helloWorld
 all: ${PROGRAM}.o
 	ld -s -o ${PROGRAM}.e ${PROGRAM}.o
 	rm -rf *.o
